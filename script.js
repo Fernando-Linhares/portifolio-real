@@ -24,22 +24,22 @@ document.querySelector('#light-button')
     buttonExpand.style.color = 'white';
 });
 
-// fetch('https://api.github.com/users/Fernando-Linhares/repos')
-// .then(res => res.json())
-// .then(res => {
-//         res.forEach(item => {
-//             let div = document.createElement('div');
+fetch('https://api.github.com/users/Fernando-Linhares/repos')
+.then(res => res.json())
+.then(res => {
+        res.forEach(item => {
+            let div = document.createElement('div');
 
-//             div.innerHTML = `<div class="card m-3">
-//                 <div class="card-header d-flex justify-content-center"><span class="">${item.name}</span> <i class="material-icons ">folder_open</i></div>
-//                 <div class="card-footer">
-//                 ${item.language}
-//                 </div>
-//             </div>`;
+            div.innerHTML = `<div class="card m-3">
+                <div class="card-header d-flex justify-content-center"><span class="">${item.name}</span> <i class="material-icons ">folder_open</i></div>
+                <div class="card-footer">
+                ${item.language}
+                </div>
+            </div>`;
 
-//             document.querySelector('#container').appendChild(div);
-//         });
-// });
+            document.querySelector('#container').appendChild(div);
+        });
+});
 
 
 let flag = true;
@@ -47,7 +47,7 @@ let flag = true;
 buttonExpand.onclick = event => {
     if(flag) {
         document.querySelector('#expandButton > i.material-icons').innerText = 'keyboard_arrow_up'
-        document.querySelector('#container').style.height = '1000px';
+        document.querySelector('#container').style.height = '100%';
         return flag = !flag;
     }
 
