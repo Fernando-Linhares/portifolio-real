@@ -29,8 +29,9 @@ fetch('https://api.github.com/users/Fernando-Linhares/repos')
 .then(res => {
         res.forEach(item => {
             let div = document.createElement('div');
+            let repoRoute = 'https://www.github.com/Fernando-Linhares/' + item.name;
 
-            div.innerHTML = `<div class="card m-3">
+            div.innerHTML = `<div class="card m-3 cardrepo" href="${repoRoute}">
                 <div class="card-header d-flex justify-content-center"><span class="">${item.name}</span> <i class="material-icons ">folder_open</i></div>
                 <div class="card-footer">
                 ${item.language}
@@ -39,8 +40,21 @@ fetch('https://api.github.com/users/Fernando-Linhares/repos')
 
             document.querySelector('#container').appendChild(div);
         });
+})
+.then(()=> {
+    document.querySelectorAll('.cardrepo').forEach(el => {
+        el.addEventListener('click', e => {
+            swal.fire('Visitar Repositório do projeto', 'Deseja ser redirecionado para o repositório no github?', 'warning')
+            .then(confirm => {
+                if(confirm) {
+                    window.open(el.getAttribute('href'))
+                    return;
+                }
+                return;
+            })
+        });
+    })
 });
-
 
 let flag = true;
 
@@ -54,5 +68,4 @@ buttonExpand.onclick = event => {
     document.querySelector('#expandButton > i.material-icons').innerText = 'keyboard_arrow_down'
     document.querySelector('#container').style.height = '200px';
     return flag = !flag;
-
 }
